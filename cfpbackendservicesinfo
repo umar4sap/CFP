@@ -1,0 +1,58 @@
+order processing Service
+{
+    store in db
+}
+
+
+Recipe service:
+{
+    need to explore on internet
+}
+
+procurment Service
+
+Dish Service
+
+Dish
+{
+DishId:"biryani", pm/index
+instruction{
+    steps:{
+instruction step wise and pictures videos
+
+    }
+}
+}
+
+cooking Service{
+    cookingId:""pm/index
+    dish :""   secoundry index
+    procurmentId:"" secoundry index,
+    orderprocessingId:""secoundry
+    reciepe details:{
+        including steps
+        {{Dynamic variables binding from UI}}
+    }
+    metadataInfo{
+
+    }
+    chefInfo:{
+
+    }
+
+}
+
+
+order_status_service
+{
+get
+post 
+update status
+
+You can search status by 
+orderprocessingId:""pm/index
+cookingId:""secoundry
+procurmentId:""
+
+
+}
