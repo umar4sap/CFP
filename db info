@@ -1,0 +1,22 @@
+cfp_order_db-->
+tables
+cfp_order_processing_table : processingId Pk/ procurmentId sk / flightno sk /carrier code sk
+cfp_procument_table   :      procurmentId pk processingId sk/ flightno sk /carrier code sk
+
+cfp_training_db        
+cfp_dish_training_table    : dishId pk 
+cfp_reciepe_table          : receipeId pk
+
+
+cfp_cooking_db-->
+tables
+cfp_cooking_table           : cookingId pk / processingId sk/  procurmentId sk / flightno sk /carrier code sk
+cfp_cooking_status          : cookingId pk / processingId sk/  procurmentId sk / flightno sk /carrier code sk
+
+cfp_order_status_db
+order_status                : orderId PK  /cookingId SK/ procurmentId sk / processingId sk /flightno sk / carrier code sk
+Change feed will be configured in order status to track new status changes
+
+
+PK: Primary Key(Index)
+Sk: Secoundry key(Index)
