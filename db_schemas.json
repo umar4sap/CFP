@@ -1,0 +1,190 @@
+
+cfp_order_processing_tb:
+{
+"db": {
+"id": "c456b2e2-7e84-46f8-86fa-88fc03e3a8ca" ,
+"name": "cfp_order_db" ,
+"type": "DB"
+} ,
+"doc_count_estimates": [
+0
+] ,
+"id": "1df094f1-5e1b-43ea-b202-5d045bc87fd0" ,
+"indexes": [
+"carrierCode" ,
+"flightNo" ,
+"procurmentId"
+] ,
+"name": "cfp_order_processing_tb" ,
+"primary_key": "processingId" ,
+"type": "TABLE"
+}
+
+
+
+
+
+
+cfp_procument_tb:
+{
+"db": {
+"id": "c456b2e2-7e84-46f8-86fa-88fc03e3a8ca" ,
+"name": "cfp_order_db" ,
+"type": "DB"
+} ,
+"doc_count_estimates": [
+0
+] ,
+"id": "3ebe8542-d6cc-4501-a1cd-04283184d3ee" ,
+"indexes": [
+"carrierCode" ,
+"flightNo" ,
+"processingId"
+] ,
+"name": "cfp_procument_tb" ,
+"primary_key": "procurmentId" ,
+"type": "TABLE"
+}
+
+
+
+
+
+
+
+order_status_tb:
+{
+    "db": {
+    "id": "63d911a4-bec7-4ed4-afd5-0e7dce3f6e00" ,
+    "name": "cfp_order_status_db" ,
+    "type": "DB"
+    } ,
+    "doc_count_estimates": [
+    0
+    ] ,
+    "id": "7d34d78f-1338-4f6b-beab-3e3bc04ced28" ,
+    "indexes": [
+    "carrierCode" ,
+    "cookingId" ,
+    "flightNo" ,
+    "orderId" ,
+    "processingId" ,
+    "procurmentId"
+    ] ,
+    "name": "order_status_tb" ,
+    "primary_key": "order_status_Id" ,
+    "type": "TABLE"
+    }
+    
+    
+    
+    
+    
+cfp_cooking_tb:
+    {
+"db": {
+"id": "6f788208-a69c-4fb0-8eb4-8cfd32f5573b" ,
+"name": "cfp_cooking_db" ,
+"type": "DB"
+} ,
+"doc_count_estimates": [
+0
+] ,
+"id": "f47dd9f2-610d-4c40-9f4a-c3b5cfc8de42" ,
+"indexes": [
+"carrierCode" ,
+"flightNo" ,
+"processingId" ,
+"procurmentId"
+] ,
+"name": "cfp_cooking_tb" ,
+"primary_key": "cookingId" ,
+"type": "TABLE"
+}
+
+
+
+
+
+cfp_cooking_status_tb:
+{
+"db": {
+"id": "6f788208-a69c-4fb0-8eb4-8cfd32f5573b" ,
+"name": "cfp_cooking_db" ,
+"type": "DB"
+} ,
+"doc_count_estimates": [
+0
+] ,
+"id": "b7a45fce-aada-44b9-825f-b5cbf4ada2dd" ,
+"indexes": [
+"carrierCode" ,
+"cookingId" ,
+"flightNo" ,
+"processingId" ,
+"procurmentId"
+] ,
+"name": "cfp_cooking_status_tb" ,
+"primary_key": "cooking_status_id" ,
+"type": "TABLE"
+}
+
+
+
+
+cfp_dish_training_tb:
+
+{
+"db": {
+"id": "6fa82cab-a025-49db-b87a-f5c7777043bd" ,
+"name": "cfp_training_model_db" ,
+"type": "DB"
+} ,
+"doc_count_estimates": [
+0
+] ,
+"id": "17caaa54-ee1a-43da-8236-c60707d6fee1" ,
+"indexes": [ ],
+"name": "cfp_dish_training_tb" ,
+"primary_key": "dishId" ,
+"type": "TABLE"
+}
+
+
+cfp_recipe_tb:
+{
+"db": {
+"id": "6fa82cab-a025-49db-b87a-f5c7777043bd" ,
+"name": "cfp_training_model_db" ,
+"type": "DB"
+} ,
+"doc_count_estimates": [
+0
+] ,
+"id": "ef442630-26bf-4fc3-8c4a-d390fbce8355" ,
+"indexes": [ ],
+"name": "cfp_recipe_tb" ,
+"primary_key": "recipeId" ,
+"type": "TABLE"
+}
+
+cfp_comment_suggestion_tb:
+
+"db": {
+"id": "f27d1684-8d00-47c2-93b2-8ee68b7733db" ,
+"name": "cfp_comments_suggestion_db" ,
+"type": "DB"
+} ,
+"doc_count_estimates": [
+0
+] ,
+"id": "637db4a0-1a94-4afe-9e17-f62c643e13a7" ,
+"indexes": [
+"cookingId" ,
+"dishId" ,
+"recipeId"
+] ,
+"name": "cfp_comment_suggestion_tb" ,
+"primary_key": "commentId" ,
+"type": "TABLE"
+}
