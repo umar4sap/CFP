@@ -1,0 +1,136 @@
+swagger: '2.0'
+info:
+  description: Catering falcon Portal services
+  version: 0.0.1
+  title: catering falcon Portal  services
+  contact:
+    name: API Support
+    email: mohammad.umaruddin@dnata.com
+basePath: /cfp/services/order-processing-service
+schemes:
+  - http
+securityDefinitions:
+  UserSecurity:
+    type: apiKey
+    in: header
+    name: Authorization
+paths:
+  '/order/':
+    x-swagger-router-controller: orderProcessingService
+    post:
+      tags:
+        - order process
+      summary: create and process order for airlines.
+      description: Airline can place order for catering
+      operationId: createOrderForAirline
+      produces:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/order'
+      responses:
+        '200':
+          description: order details
+          schema:
+            type: object
+            properties: {}
+        '400':
+          description: Error creating a new order
+        default:
+          description: Unexpected error
+    get:
+      tags:
+        - order process
+      summary: get order details.
+      description:  can get order details
+      operationId: getOrderByOrderId
+      produces:
+        - application/json
+      parameters:
+        - name: orderId
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: order details
+          schema:
+            type: object
+            properties: {}
+        '400':
+          description: Error getting order Info
+        default:
+          description: Unexpected error      
+          
+  
+  '/order/{orderId}':
+    x-swagger-router-controller: orderProcessingService
+    put:
+      tags:
+        - order process
+      summary: update a order.
+      description: Airline can update order if it not processed
+      operationId: updateOrder
+      produces:
+        - application/json
+      parameters:
+        - name: orderId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/updateOrderDetails'
+      responses:
+        '200':
+          description: lists details
+          schema:
+            type: object
+            properties: {}
+        '400':
+          description: Error creating a new publishers
+        default:
+          description: Unexpected error
+    get:
+      tags:
+        - order process
+      summary: get order all orders list.
+      description:  can get all order list
+      operationId: getAllOrder
+      produces:
+        - application/json
+      parameters:
+        - name: orderId
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: order list
+          schema:
+            type: object
+            properties: {}
+        '400':
+          description: Error getting order Info
+        default:
+          description: Unexpected error
+
+  /swagger: 
+    x-swagger-pipe: swagger_raw
+definitions:
+  order:
+    type: object
+    required:
+      - orderDetails
+    properties:
+      orderDetails:
+        $ref: '#/definitions/orderDetails'
+  orderDetails:
+    type: object
+  updateOrderDetails:
+    type: object
