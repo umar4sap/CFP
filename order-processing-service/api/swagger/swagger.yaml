@@ -9,13 +9,8 @@ info:
 basePath: /cfp/services/order-processing-service
 schemes:
   - http
-securityDefinitions:
-  UserSecurity:
-    type: apiKey
-    in: header
-    name: Authorization
 paths:
-  '/order/':
+  /order/process/carrier/{carrierCode}:
     x-swagger-router-controller: orderProcessingService
     post:
       tags:
@@ -23,14 +18,20 @@ paths:
       summary: create and process order for airlines.
       description: Airline can place order for catering
       operationId: createOrderForAirline
+      consumes:
+        - application/json
       produces:
         - application/json
       parameters:
+        - name: carrierCode
+          in: path
+          type: string
+          required: true
         - name: body
           in: body
           required: true
           schema:
-            $ref: '#/definitions/order'
+            $ref: '#/definitions/orderDetails'
       responses:
         '200':
           description: order details
@@ -46,11 +47,11 @@ paths:
         - order process
       summary: get order details.
       description:  can get order details
-      operationId: getOrderByOrderId
+      operationId: getOrdersForAirline
       produces:
         - application/json
       parameters:
-        - name: orderId
+        - name: carrierCode
           in: path
           type: string
           required: true
@@ -66,18 +67,20 @@ paths:
           description: Unexpected error      
           
   
-  '/order/{orderId}':
+  /order/process/{order_processing_id}:
     x-swagger-router-controller: orderProcessingService
     put:
       tags:
         - order process
       summary: update a order.
       description: Airline can update order if it not processed
-      operationId: updateOrder
+      operationId: updateOrderWithOrderProcessId
+      consumes:
+        - application/json
       produces:
         - application/json
       parameters:
-        - name: orderId
+        - name: order_processing_id
           in: path
           type: string
           required: true
@@ -101,11 +104,11 @@ paths:
         - order process
       summary: get order all orders list.
       description:  can get all order list
-      operationId: getAllOrder
+      operationId: getOrderWithOrderProcessId
       produces:
         - application/json
       parameters:
-        - name: orderId
+        - name: order_processing_id
           in: path
           type: string
           required: true
@@ -119,6 +122,36 @@ paths:
           description: Error getting order Info
         default:
           description: Unexpected error
+  /order/process/origin/{boardingPoint}/status/{status}:
+    x-swagger-router-controller: orderProcessingService
+    get:
+      tags:
+        - order process details for masterchef
+      summary: get order details with status processed or pending or not processed or rejected
+      description: create and process order for all airlines 
+      operationId: getAllOrdersWithStatus
+      produces:
+        - application/json
+      parameters:
+        - name: status
+          in: path
+          type: string
+          required: true
+        - name: boardingPoint
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: order details
+          schema:
+            type: object
+            properties: {}
+        '400':
+          description: Error creating a new order
+        default:
+          description: Unexpected error
+    
 
   /swagger: 
     x-swagger-pipe: swagger_raw

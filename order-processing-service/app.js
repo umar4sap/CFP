@@ -11,7 +11,7 @@ var SwaggerRestify = require('swagger-restify-mw'),
     fs = require('fs'),
     _ = require('lodash'),
     log = new Logger.createLogger({
-        name: 'carrier-listing-service',
+        name: 'order-processing-service',
         serializers: { req: Logger.stdSerializers.req }
     });
 
@@ -38,11 +38,12 @@ var jwt = jwt({
 });
 
 //app configs
-app.use(restify.CORS());
+//app.use(restify.CORS());
 app.use(cors());
-app.use(restify.queryParser());
-app.use(restify.bodyParser());
-app.use(jwt);
+app.use(restify.plugins.acceptParser(app.acceptable));
+app.use(restify.plugins.bodyParser());
+app.use(restify.plugins.queryParser());
+//app.use(jwt);
 app.pre(function(req, res, next) {
     req.log.info({ req: req }, 'REQUEST');
     next();

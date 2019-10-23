@@ -1,6 +1,6 @@
 module.exports = {
     rethinkdb: {
-        host: process.env.DB_HOST ||"localhost", // for docker 
+        host: process.env.DB_HOST ||"localhost",  
         port: process.env.DB_PORT || 28015,
         authKey: "",
         db: "cfp_order_db",
