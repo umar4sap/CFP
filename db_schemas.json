@@ -16,7 +16,7 @@ cfp_order_processing_tb:
 "procurmentId"
 ] ,
 "name": "cfp_order_processing_tb" ,
-"primary_key": "processingId" ,
+"primary_key": "order_processing_id" ,
 "type": "TABLE"
 }
 
@@ -39,7 +39,7 @@ cfp_procument_tb:
 "indexes": [
 "carrierCode" ,
 "flightNo" ,
-"processingId"
+"order_processing_id"
 ] ,
 "name": "cfp_procument_tb" ,
 "primary_key": "procurmentId" ,
@@ -68,7 +68,7 @@ order_status_tb:
     "cookingId" ,
     "flightNo" ,
     "orderId" ,
-    "processingId" ,
+    "order_processing_id" ,
     "procurmentId"
     ] ,
     "name": "order_status_tb" ,
@@ -94,7 +94,7 @@ cfp_cooking_tb:
 "indexes": [
 "carrierCode" ,
 "flightNo" ,
-"processingId" ,
+"order_processing_id" ,
 "procurmentId"
 ] ,
 "name": "cfp_cooking_tb" ,
@@ -121,7 +121,7 @@ cfp_cooking_status_tb:
 "carrierCode" ,
 "cookingId" ,
 "flightNo" ,
-"processingId" ,
+"order_processing_id" ,
 "procurmentId"
 ] ,
 "name": "cfp_cooking_status_tb" ,
