@@ -9,23 +9,23 @@
 "destination":"LHR",
 "orderedBy":"userId",
 "mealDetails":{
-totalPaxCount:110,
-totalMealsCode:["CPB","HCB"],
-MealsType:"lunch",
-totalMealChoice:["veg","non-veg"],
+"totalPaxCount":110,
+"totalMealsCode":["CPB","HCB"],
+"mealsType":"lunch",
+"totalMealChoice":["veg","non-veg"],
 "mealInfo":[{
-MealChoice:"veg",
-MealType:"lunch",
-MealCode:"CPB",
-paxCount:20,
-mealName:"Chennai Paneer Biryani"
+"mealChoice":"veg",
+"mealType":"lunch",
+"mealCode":"CPB",
+"paxCount":20,
+"mealName":"Chennai Paneer Biryani"
 },
 {
-MealChoice:"non-veg",
-MealType:"lunch",
-MealCode:"HCB",
-paxCount:90,
-mealName:"Hyderbad Chicken Biryani"
+"mealChoice":"non-veg",
+"mealType":"lunch",
+"mealCode":"HCB",
+"paxCount":90,
+"mealName":"Hyderbad Chicken Biryani"
 }]
 }
 
