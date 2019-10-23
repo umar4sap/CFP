@@ -25,7 +25,7 @@ cfp_order_processing_tb:
 
 
 
-cfp_procument_tb:
+cfp_procurement_tb:
 {
 "db": {
 "id": "c456b2e2-7e84-46f8-86fa-88fc03e3a8ca" ,
@@ -41,7 +41,7 @@ cfp_procument_tb:
 "flightNo" ,
 "processingId"
 ] ,
-"name": "cfp_procument_tb" ,
+"name": "cfp_procurement_tb" ,
 "primary_key": "procurmentId" ,
 "type": "TABLE"
 }
