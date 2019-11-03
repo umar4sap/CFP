@@ -1,0 +1,348 @@
+swagger: '2.0'
+info:
+  description: Catering falcon Portal services
+  version: 0.0.1
+  title: catering falcon Portal  services
+  contact:
+    name: API Support
+    email: mohammad.umaruddin@dnata.com
+host: localhost:9002
+basePath: /cfp/services/menu-service
+schemes:
+  - http
+paths:
+  /menu/:
+    x-swagger-router-controller: menuService
+    post:
+      tags:
+        - menu process
+      summary: create and process menu for airlines.
+      description: Airline can place menu for catering
+      operationId: createMenu
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/menuDetails'
+      responses:
+        '200':
+          description: menu details
+          schema:
+            type: object
+            properties: {}
+        '400':
+          description: Error creating a new menu
+        default:
+          description: Unexpected error
+    get:
+      tags:
+        - menu process
+      summary: get menu details.
+      description:  can get menu details
+      operationId: getMenus
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: menu details
+          schema:
+            type: object
+            properties: {}
+        '400':
+          description: Error getting menu Info
+        default:
+          description: Unexpected error      
+          
+  
+  /menu/{menu_id}:
+    x-swagger-router-controller: menuService
+    put:
+      tags:
+        - menu process
+      summary: update a menu.
+      description: Airline can update menu if it not processed
+      operationId: updateMenuWithMenuId
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: menu_id
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/updateMenuDetails'
+      responses:
+        '200':
+          description: lists details
+          schema:
+            type: object
+            properties: {}
+        '400':
+          description: Error creating a new publishers
+        default:
+          description: Unexpected error
+    get:
+      tags:
+        - menu process
+      summary: get menu all menus list.
+      description:  can get all menu list
+      operationId: getMenuWithMenuId
+      produces:
+        - application/json
+      parameters:
+        - name: menu_id
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: menu list
+          schema:
+            type: object
+            properties: {}
+        '400':
+          description: Error getting menu Info
+        default:
+          description: Unexpected error
+  /menu/status/{status}:
+    x-swagger-router-controller: menuService
+    get:
+      tags:
+        - menu process details for masterchef
+      summary: get menu details with status processed or pending or not processed or rejected
+      description: create and process menu for all airlines 
+      operationId: getAllMenusWithStatus
+      produces:
+        - application/json
+      parameters:
+        - name: status
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: menu details
+          schema:
+            type: object
+            properties: {}
+        '400':
+          description: Error creating a new menu
+        default:
+          description: Unexpected error
+  /menu/search/api/v1:
+    x-swagger-router-controller: menuService
+    post:
+      tags:
+        - menu process
+      summary: create and process menu for airlines.
+      description: Airline can place menu for catering
+      operationId: getAllMenusWithSearchCretria
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/menuSearch'
+      responses:
+        '200':
+          description: menu details
+          schema:
+            type: object
+            properties: {}
+        '400':
+          description: Error creating a new menu
+        default:
+          description: Unexpected error
+  /recipe/:
+    x-swagger-router-controller: recipeService
+    post:
+      tags:
+        - recipe process
+      summary: create and process recipe for airlines.
+      description: Airline can place recipe for catering
+      operationId: createRecipe
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/recipeDetails'
+      responses:
+        '200':
+          description: recipe details
+          schema:
+            type: object
+            properties: {}
+        '400':
+          description: Error creating a new recipe
+        default:
+          description: Unexpected error
+    get:
+      tags:
+        - recipe process
+      summary: get recipe details.
+      description:  can get recipe details
+      operationId: getRecipes
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: recipe details
+          schema:
+            type: object
+            properties: {}
+        '400':
+          description: Error getting recipe Info
+        default:
+          description: Unexpected error      
+          
+  
+  /recipe/{recipe_id}:
+    x-swagger-router-controller: recipeService
+    put:
+      tags:
+        - recipe process
+      summary: update a recipe.
+      description: Airline can update recipe if it not processed
+      operationId: updateRecipeWithRecipeId
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: recipe_id
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/updateRecipeDetails'
+      responses:
+        '200':
+          description: lists details
+          schema:
+            type: object
+            properties: {}
+        '400':
+          description: Error creating a new publishers
+        default:
+          description: Unexpected error
+    get:
+      tags:
+        - recipe process
+      summary: get recipe all recipes list.
+      description:  can get all recipe list
+      operationId: getRecipeWithRecipeId
+      produces:
+        - application/json
+      parameters:
+        - name: recipe_id
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: recipe list
+          schema:
+            type: object
+            properties: {}
+        '400':
+          description: Error getting recipe Info
+        default:
+          description: Unexpected error
+  /recipe/status/{status}:
+    x-swagger-router-controller: recipeService
+    get:
+      tags:
+        - recipe process details for masterchef
+      summary: get recipe details with status processed or pending or not processed or rejected
+      description: create and process recipe for all airlines 
+      operationId: getAllRecipesWithStatus
+      produces:
+        - application/json
+      parameters:
+        - name: status
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: recipe details
+          schema:
+            type: object
+            properties: {}
+        '400':
+          description: Error creating a new recipe
+        default:
+          description: Unexpected error
+  /recipe/search/api/v1:
+    x-swagger-router-controller: recipeService
+    post:
+      tags:
+        - recipe process
+      summary: create and process recipe for airlines.
+      description: Airline can place recipe for catering
+      operationId: getAllRecipesWithSearchCretria
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/recipeSearch'
+      responses:
+        '200':
+          description: recipe details
+          schema:
+            type: object
+            properties: {}
+        '400':
+          description: Error creating a new recipe
+        default:
+          description: Unexpected error  
+
+  /swagger: 
+    x-swagger-pipe: swagger_raw
+definitions:
+  menu:
+    type: object
+    required:
+      - menuDetails
+    properties:
+      menuDetails:
+        $ref: '#/definitions/menuDetails'
+  menuDetails:
+    type: object
+  updateMenuDetails:
+    type: object
+  menuSearch:
+    type: object
+  recipeSearch:
+    type: object
+  recipeDetails:
+    type: object
+  updateRecipeDetails:
+    type: object
