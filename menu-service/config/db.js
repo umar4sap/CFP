@@ -9,6 +9,14 @@ module.exports = {
         {
             table: "cfp_menu_tb",
             id:"menu_id"
+        },
+        {
+            table: "cfp_recipe_tb",
+            id:"recipe_id"
+        },
+        {
+            table: "cfp_template_tb",
+            id:"template_id"
         }
     ]
 }

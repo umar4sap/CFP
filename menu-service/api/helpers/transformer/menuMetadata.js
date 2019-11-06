@@ -11,16 +11,24 @@ function menuMetadata(data, userId, tenantId,orgId) {
         menuData = data;
     }
    
-    menuMetadata.prototype.menu.mealSeqNumber = menuData.mealSeqNumber
-    menuMetadata.prototype.menu.mealsType = menuData.mealsType;
-    menuMetadata.prototype.menu.mealCode = menuData.mealCode;
-    menuMetadata.prototype.menu.mealName = menuData.mealName;
-    menuMetadata.prototype.menu.mealDescription = menuData.mealDescription;
-
+    menuMetadata.prototype.menu.menuSeqNumber = menuData.menuSeqNumber
+    menuMetadata.prototype.menu.menusType = menuData.menusType;
+    menuMetadata.prototype.menu.templateType = menuData.templateType;
+    menuMetadata.prototype.menu.menuCode = menuData.menuCode;
+    menuMetadata.prototype.menu.cabinClass = menuData.cabinClass;
+    menuMetadata.prototype.menu.menuDescription = menuData.menuDescription;
+    menuMetadata.prototype.menu.duration = menuData.duration;
+    menuMetadata.prototype.menu.cycleCodeRef = menuData.cycleCodeRef;
+    menuMetadata.prototype.menu.menuCategory = menuData.menuCategory;
+    menuMetadata.prototype.menu.remark = menuData.remark;
+    menuMetadata.prototype.menu.region = menuData.region;
+   
     if(menuData.recipes){
-    menuMetadata.prototype.menu.recipes = menuData.mealDetails.recipes;
+    menuMetadata.prototype.menu.recipes = menuData.menuDetails.recipes;
+    //recipeName
+    //recipeCode
 }
-    menuMetadata.prototype.menu.mealStatus = menuData.mealStatus;
+    menuMetadata.prototype.menu.menuStatus = menuData.menuStatus;
   
 
 

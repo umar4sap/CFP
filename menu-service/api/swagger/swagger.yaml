@@ -11,6 +11,162 @@ basePath: /cfp/services/menu-service
 schemes:
   - http
 paths:
+  /template/:
+    x-swagger-router-controller: templateService
+    post:
+      tags:
+        - template process
+      summary: create and process template for airlines.
+      description: Airline can place template for catering
+      operationId: createTemplate
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/templateDetails'
+      responses:
+        '200':
+          description: template details
+          schema:
+            type: object
+            properties: {}
+        '400':
+          description: Error creating a new template
+        default:
+          description: Unexpected error
+    get:
+      tags:
+        - template process
+      summary: get template details.
+      description:  can get template details
+      operationId: getTemplates
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: template details
+          schema:
+            type: object
+            properties: {}
+        '400':
+          description: Error getting template Info
+        default:
+          description: Unexpected error      
+          
+  
+  /template/{template_id}:
+    x-swagger-router-controller: templateService
+    put:
+      tags:
+        - template process
+      summary: update a template.
+      description: Airline can update template if it not processed
+      operationId: updateTemplateWithTemplateId
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: template_id
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/updateTemplateDetails'
+      responses:
+        '200':
+          description: lists details
+          schema:
+            type: object
+            properties: {}
+        '400':
+          description: Error creating a new publishers
+        default:
+          description: Unexpected error
+    get:
+      tags:
+        - template process
+      summary: get template all templates list.
+      description:  can get all template list
+      operationId: getTemplateWithTemplateId
+      produces:
+        - application/json
+      parameters:
+        - name: template_id
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: template list
+          schema:
+            type: object
+            properties: {}
+        '400':
+          description: Error getting template Info
+        default:
+          description: Unexpected error
+  /template/status/{status}:
+    x-swagger-router-controller: templateService
+    get:
+      tags:
+        - template process details for masterchef
+      summary: get template details with status processed or pending or not processed or rejected
+      description: create and process template for all airlines 
+      operationId: getAllTemplatesWithStatus
+      produces:
+        - application/json
+      parameters:
+        - name: status
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: template details
+          schema:
+            type: object
+            properties: {}
+        '400':
+          description: Error creating a new template
+        default:
+          description: Unexpected error
+  /template/search/api/v1:
+    x-swagger-router-controller: templateService
+    post:
+      tags:
+        - template process
+      summary: create and process template for airlines.
+      description: Airline can place template for catering
+      operationId: getAllTemplatesWithSearchCretria
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/templateSearch'
+      responses:
+        '200':
+          description: template details
+          schema:
+            type: object
+            properties: {}
+        '400':
+          description: Error creating a new template
+        default:
+          description: Unexpected error
   /menu/:
     x-swagger-router-controller: menuService
     post:
@@ -345,4 +501,10 @@ definitions:
   recipeDetails:
     type: object
   updateRecipeDetails:
+    type: object
+  templateSearch:
+    type: object
+  templateDetails:
+    type: object
+  updateTemplateDetails:
     type: object
