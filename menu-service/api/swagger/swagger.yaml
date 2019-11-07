@@ -6,7 +6,7 @@ info:
   contact:
     name: API Support
     email: mohammad.umaruddin@dnata.com
-host: localhost:9002
+host: 52.188.192.123:9002
 basePath: /cfp/services/menu-service
 schemes:
   - http
