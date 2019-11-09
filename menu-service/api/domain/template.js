@@ -42,11 +42,12 @@ template.prototype.createTemplate=(traceId,userId, cb) => {
     // template.prototype.data['createdDTS'] = moment.utc().format();
     // template.prototype.data['updatedDTS'] = moment.utc().format();
     var templateMetadata = new TemplateMetadata(template.prototype.data).getData();
-    templateMetadata.createdDTS=moment.utc().format();
-    templateMetadata.updatedDTS=moment.utc().format();
+    templateMetadata.createdDate=moment.utc().format();
+    templateMetadata.updatedDate=moment.utc().format();
     // templateMetadata.expringDate=new Date(new Date().getTime()+(180*24*60*60*1000));
     // templateMetadata.listedDate=new Date();
-    templateMetadata.templateedBy=userId;
+    templateMetadata.createddBy=userId;
+    templateMetadata.updatedBy=userId;
     //templateMetadata.carrierCode=carrierCode;
    // templateMetadata.airlineId=airlineId;
     var response = {

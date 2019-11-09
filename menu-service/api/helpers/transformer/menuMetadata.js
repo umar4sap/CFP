@@ -12,7 +12,7 @@ function menuMetadata(data, userId, tenantId,orgId) {
     }
    
     menuMetadata.prototype.menu.menuSeqNumber = menuData.menuSeqNumber
-    menuMetadata.prototype.menu.menusType = menuData.menusType;
+    menuMetadata.prototype.menu.menuType = menuData.menuType;
     menuMetadata.prototype.menu.templateType = menuData.templateType;
     menuMetadata.prototype.menu.menuCode = menuData.menuCode;
     menuMetadata.prototype.menu.cabinClass = menuData.cabinClass;
@@ -21,7 +21,7 @@ function menuMetadata(data, userId, tenantId,orgId) {
     menuMetadata.prototype.menu.cycleCodeRef = menuData.cycleCodeRef;
     menuMetadata.prototype.menu.menuCategory = menuData.menuCategory;
     menuMetadata.prototype.menu.remark = menuData.remark;
-    menuMetadata.prototype.menu.region = menuData.region;
+    menuMetadata.prototype.menu.region = menuData.region; 
    
     if(menuData.recipes){
     menuMetadata.prototype.menu.recipes = menuData.menuDetails.recipes;

@@ -42,11 +42,12 @@ menu.prototype.createMenu=(traceId,userId, cb) => {
     // menu.prototype.data['createdDTS'] = moment.utc().format();
     // menu.prototype.data['updatedDTS'] = moment.utc().format();
     var menuMetadata = new MenuMetadata(menu.prototype.data).getData();
-    menuMetadata.createdDTS=moment.utc().format();
-    menuMetadata.updatedDTS=moment.utc().format();
+    menuMetadata.createdDate=moment.utc().format();
+    menuMetadata.updatedDate=moment.utc().format();
     // menuMetadata.expringDate=new Date(new Date().getTime()+(180*24*60*60*1000));
     // menuMetadata.listedDate=new Date();
-    menuMetadata.menuedBy=userId;
+    menuMetadata.createdBy=userId;
+    menuMetadata.updatedBy=userId;
     //menuMetadata.carrierCode=carrierCode;
    // menuMetadata.airlineId=airlineId;
     var response = {

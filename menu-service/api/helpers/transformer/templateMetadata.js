@@ -21,8 +21,8 @@ function templateMetadata(data, userId, tenantId,orgId) {
     templateMetadata.prototype.template.region = templateData.region;
     templateMetadata.prototype.template.cabinClass = templateData.cabinClass;
     templateMetadata.prototype.template.flightCategory = templateData.flightCategory;
-    templateMetadata.prototype.template.carrierCode = templateData.carrierCode;
-    templateMetadata.prototype.template.flightNo = templateData.flightNo;
+    templateMetadata.prototype.template.airlines = templateData.airlines;
+    templateMetadata.prototype.template.flightNumber = templateData.flightNumber;
     templateMetadata.prototype.template.menuTemplateRef = templateData.menuTemplateRef;
     if(templateData.menus){
     templateMetadata.prototype.template.menu = templateData.templateDetails.menu;
@@ -30,6 +30,7 @@ function templateMetadata(data, userId, tenantId,orgId) {
     //menuName
 }
     templateMetadata.prototype.template.templateStatus = templateData.templateStatus;
+    templateMetadata.prototype.template.templateDescription = templateData.templateDescription;
   
 
 
