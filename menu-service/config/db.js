@@ -17,6 +17,10 @@ module.exports = {
         {
             table: "cfp_template_tb",
             id:"template_id"
+        },
+        {
+            table: "cfp_ingradient_tb",
+            id:"ingradient_id"
         }
     ]
 }
