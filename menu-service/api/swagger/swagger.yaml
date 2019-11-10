@@ -452,7 +452,7 @@ paths:
         default:
           description: Unexpected error
   /recipe/search/api/v1:
-    x-swagger-router-controller: recipeService
+    x-swagger-router-controller: getAllRecipseWithSearchCretria
     post:
       tags:
         - recipe process
@@ -479,6 +479,162 @@ paths:
           description: Error creating a new recipe
         default:
           description: Unexpected error  
+  /ingradient/:
+    x-swagger-router-controller: ingradientService
+    post:
+      tags:
+        - ingradient process
+      summary: create and process ingradient for airlines.
+      description: Airline can place ingradient for catering
+      operationId: createIngradient
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/ingradientDetails'
+      responses:
+        '200':
+          description: ingradient details
+          schema:
+            type: object
+            properties: {}
+        '400':
+          description: Error creating a new ingradient
+        default:
+          description: Unexpected error
+    get:
+      tags:
+        - ingradient process
+      summary: get ingradient details.
+      description:  can get ingradient details
+      operationId: getIngradients
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: ingradient details
+          schema:
+            type: object
+            properties: {}
+        '400':
+          description: Error getting ingradient Info
+        default:
+          description: Unexpected error      
+          
+  
+  /ingradient/{ingradient_id}:
+    x-swagger-router-controller: ingradientService
+    put:
+      tags:
+        - ingradient process
+      summary: update a ingradient.
+      description: Airline can update ingradient if it not processed
+      operationId: updateIngradientWithIngradientId
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: ingradient_id
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/updateIngradientDetails'
+      responses:
+        '200':
+          description: lists details
+          schema:
+            type: object
+            properties: {}
+        '400':
+          description: Error creating a new publishers
+        default:
+          description: Unexpected error
+    get:
+      tags:
+        - ingradient process
+      summary: get ingradient all ingradients list.
+      description:  can get all ingradient list
+      operationId: getIngradientWithIngradientId
+      produces:
+        - application/json
+      parameters:
+        - name: ingradient_id
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: ingradient list
+          schema:
+            type: object
+            properties: {}
+        '400':
+          description: Error getting ingradient Info
+        default:
+          description: Unexpected error
+  /ingradient/status/{status}:
+    x-swagger-router-controller: ingradientService
+    get:
+      tags:
+        - ingradient process details for masterchef
+      summary: get ingradient details with status processed or pending or not processed or rejected
+      description: create and process ingradient for all airlines 
+      operationId: getAllIngradientsWithStatus
+      produces:
+        - application/json
+      parameters:
+        - name: status
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: ingradient details
+          schema:
+            type: object
+            properties: {}
+        '400':
+          description: Error creating a new ingradient
+        default:
+          description: Unexpected error
+  /ingradient/search/api/v1:
+    x-swagger-router-controller: getAllRecipseWithSearchCretria
+    post:
+      tags:
+        - ingradient process
+      summary: create and process ingradient for airlines.
+      description: Airline can place ingradient for catering
+      operationId: getAllIngradientsWithSearchCretria
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/ingradientSearch'
+      responses:
+        '200':
+          description: ingradient details
+          schema:
+            type: object
+            properties: {}
+        '400':
+          description: Error creating a new ingradient
+        default:
+          description: Unexpected error
 
   /swagger: 
     x-swagger-pipe: swagger_raw
@@ -507,4 +663,10 @@ definitions:
   templateDetails:
     type: object
   updateTemplateDetails:
+    type: object
+  ingradientSearch:
+    type: object
+  updateIngradientDetails:
+    type: object
+  ingradientDetails:
     type: object

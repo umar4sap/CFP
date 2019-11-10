@@ -25,9 +25,7 @@ function templateMetadata(data, userId, tenantId,orgId) {
     templateMetadata.prototype.template.flightNumber = templateData.flightNumber;
     templateMetadata.prototype.template.menuTemplateRef = templateData.menuTemplateRef;
     if(templateData.menus){
-    templateMetadata.prototype.template.menu = templateData.templateDetails.menu;
-    //menuTemplateRef
-    //menuName
+        templateMetadata.prototype.template.menus=templateData.menus;
 }
 if(templateData.all){
     templateMetadata.prototype.template.all = templateData.all;
