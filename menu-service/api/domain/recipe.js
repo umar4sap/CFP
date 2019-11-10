@@ -194,10 +194,10 @@ recipe.prototype.findAllRecipesWithStatus = (traceId,status,cb) => {
 
 
 // search menu 
-menu.prototype.searchRecipe=(traceId, cb) => {
+recipe.prototype.searchRecipe=(traceId, cb) => {
     // menu.prototype.data['createdDTS'] = moment.utc().format();
     // menu.prototype.data['updatedDTS'] = moment.utc().format();
-    var recipeMetadata = new MenuMetadata(menu.prototype.data).getData();
+    var recipeMetadata = new RecipeMetadata(menu.prototype.data).getData();
     
     // menuMetadata.expringDate=new Date(new Date().getTime()+(180*24*60*60*1000));
     // menuMetadata.listedDate=new Date();
@@ -209,9 +209,10 @@ menu.prototype.searchRecipe=(traceId, cb) => {
         statusCode: 404,
         errorCode: "code1"
     }
-     rdb.table("cfp_recipe_tb").filter(menuMetadata).run().then(function (menuData) {
-         console.log(JSON.stringify(menuData));
-             var resObj = { "status": "200", "data": menuData }
+    if(!recipeMetadata.all){
+     rdb.table("cfp_recipe_tb").filter(recipeMetadata).run().then(function (recipedata) {
+         console.log(JSON.stringify(recipedata));
+             var resObj = { "status": "200", "data": recipedata }
                     cb(null,resObj);
                 }).catch(function (err) {
                     console.log("first err catch")
@@ -220,6 +221,20 @@ menu.prototype.searchRecipe=(traceId, cb) => {
                     cb(response);
                 });  
         }
+    else{
+        rdb.table("cfp_recipe_tb").run().then(function (recipedata) {
+            console.log(JSON.stringify(recipedata));
+                var resObj = { "status": "200", "data": recipedata }
+                       cb(null,resObj);
+                   }).catch(function (err) {
+                       console.log("first err catch")
+                       log.error("TraceId : %s, Error : %s", traceId, JSON.stringify(err));
+                       
+                       cb(response);
+                   });  
+           }
+        
+    }
 
 
 

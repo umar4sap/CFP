@@ -28,6 +28,10 @@ function menuMetadata(data, userId, tenantId,orgId) {
     //recipeName
     //recipeCode
 }
+
+if(menuData.all){
+    templateMetadata.prototype.menu.all = menuData.all;
+}
     menuMetadata.prototype.menu.menuStatus = menuData.menuStatus;
   
 

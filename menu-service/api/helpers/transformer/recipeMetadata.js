@@ -30,6 +30,9 @@ function recipeMetadata(data, userId, tenantId,orgId) {
    //{ingradientCode:001
     //ingradientName:biryani}
 }
+if(recipeData.all){
+    recipeMetadata.prototype.recipeData.all = recipeData.all;
+}
 
 if(recipeData.cookingSteps){
     recipeMetadata.prototype.recipe.steps = recipeData.recipeDetails.steps;

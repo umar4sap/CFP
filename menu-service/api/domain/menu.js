@@ -212,6 +212,8 @@ menu.prototype.searchMenu=(traceId, cb) => {
         statusCode: 404,
         errorCode: "code1"
     }
+
+    if(!menuMetadata.all){
      rdb.table("cfp_menu_tb").filter(menuMetadata).run().then(function (menuData) {
          console.log(JSON.stringify(menuData));
              var resObj = { "status": "200", "data": menuData }
@@ -221,7 +223,19 @@ menu.prototype.searchMenu=(traceId, cb) => {
                     log.error("TraceId : %s, Error : %s", traceId, JSON.stringify(err));
                     
                     cb(response);
-                });  
+                }); 
+            }else{
+                rdb.table("cfp_menu_tb").run().then(function (menuData) {
+                    console.log(JSON.stringify(menuData));
+                        var resObj = { "status": "200", "data": menuData }
+                               cb(null,resObj);
+                           }).catch(function (err) {
+                               console.log("first err catch")
+                               log.error("TraceId : %s, Error : %s", traceId, JSON.stringify(err));
+                               
+                               cb(response);
+                           }); 
+            } 
         }
 
 

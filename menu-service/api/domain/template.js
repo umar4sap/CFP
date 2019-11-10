@@ -212,6 +212,7 @@ template.prototype.searchTemplate=(traceId, cb) => {
         statusCode: 404,
         errorCode: "code1"
     }
+    if(!templateMetadata.all){
      rdb.table("cfp_template_tb").filter(templateMetadata).run().then(function (templateData) {
          console.log(JSON.stringify(templateData));
              var resObj = { "status": "200", "data": templateData }
@@ -222,7 +223,19 @@ template.prototype.searchTemplate=(traceId, cb) => {
                     
                     cb(response);
                 });  
+        }else{
+            rdb.table("cfp_template_tb").run().then(function (templateData) {
+                console.log(JSON.stringify(templateData));
+                    var resObj = { "status": "200", "data": templateData }
+                           cb(null,resObj);
+                       }).catch(function (err) {
+                           console.log("first err catch")
+                           log.error("TraceId : %s, Error : %s", traceId, JSON.stringify(err));
+                           
+                           cb(response);
+                       }); 
         }
+    }
 
 
 
