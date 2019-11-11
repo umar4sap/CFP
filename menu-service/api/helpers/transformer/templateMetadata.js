@@ -35,6 +35,11 @@ if(templateData.all){
     templateMetadata.prototype.template.templateDescription = templateData.templateDescription;
   
 
+    if(templateData.ids){
+    templateMetadata.prototype.template.ids = templateData.ids
+    }
+
+
 
    
     

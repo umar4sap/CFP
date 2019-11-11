@@ -237,6 +237,36 @@ template.prototype.searchTemplate=(traceId, cb) => {
         }
     }
 
+    // search template 
+template.prototype.getAllWithtemplateCodes=(traceId, cb) => {
+    // template.prototype.data['createdDTS'] = moment.utc().format();
+    // template.prototype.data['updatedDTS'] = moment.utc().format();
+    var templateMetadata = new TemplateMetadata(template.prototype.data).getData();
+    
+    // templateMetadata.expringDate=new Date(new Date().getTime()+(180*24*60*60*1000));
+    // templateMetadata.listedDate=new Date();
+    // templateMetadata.templateedBy=userId;
+    //templateMetadata.carrierCode=carrierCode;
+   // templateMetadata.airlineId=airlineId;
+    var response = {
+        message: "Cannot get the template.",
+        statusCode: 404,
+        errorCode: "code1"
+    }
+   
+            rdb.table("cfp_template_tb").getAll.apply(rdb.table("cfp_template_tb"),templateMetadata.ids).run().then(function (templateData) {
+                console.log(JSON.stringify(templateData));
+                    var resObj = { "status": "200", "data": templateData }
+                           cb(null,resObj);
+                       }).catch(function (err) {
+                           console.log("first err catch")
+                           log.error("TraceId : %s, Error : %s", traceId, JSON.stringify(err));
+                           
+                           cb(response);
+                       }); 
+        
+    }
+
 
 
 

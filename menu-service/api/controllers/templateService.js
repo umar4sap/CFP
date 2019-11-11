@@ -7,7 +7,8 @@ module.exports = {
     updateTemplateWithTemplateId: updateTemplateWithTemplateId,
     getTemplateWithTemplateId: getTemplateWithTemplateId,
     getAllTemplatesWithStatus: getAllTemplatesWithStatus,
-    getAllTemplatesWithSearchCretria:getAllTemplatesWithSearchCretria
+    getAllTemplatesWithSearchCretria:getAllTemplatesWithSearchCretria,
+    getAllTemplatesWithtemplateCodes:getAllTemplatesWithtemplateCodes
 
 }
 
@@ -176,4 +177,24 @@ function getAllTemplatesWithSearchCretria(req, res) {
                 res.json(content);
             }
         });
-}
+    }
+        function getAllTemplatesWithtemplateCodes(req, res) {
+            //    var tokenId = req.headers.authorization;
+            //    var userId = req.user.sub.split("|")[1];
+            var traceId = "test";
+        
+            var bodyData = req.swagger.params.body.value;
+        
+            (new Template(bodyData)).getAllWithtemplateCodes(traceId,
+                function (err, content) {
+                    console.log('after save...' + content)
+                    if (err) {
+                        console.log("errrrrrrrrrrr")
+                        res.send(JSON.stringify(err));
+                        log.error("TraceId : %s, Error : %s", traceId, JSON.stringify(err));
+                    } else {
+                        res.json(content);
+                    }
+                });
+            }
+

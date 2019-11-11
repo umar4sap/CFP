@@ -167,6 +167,34 @@ paths:
           description: Error creating a new template
         default:
           description: Unexpected error
+  /template/selected/api:
+    x-swagger-router-controller: templateService
+    post:
+      tags:
+        - template process
+      summary: create and process template for airlines.
+      description: Airline can place template for catering
+      operationId: getAllTemplatesWithtemplateCodes
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/templateSearch'
+      responses:
+        '200':
+          description: template details
+          schema:
+            type: object
+            properties: {}
+        '400':
+          description: Error creating a new template
+        default:
+          description: Unexpected error
   /menu/:
     x-swagger-router-controller: menuService
     post:
