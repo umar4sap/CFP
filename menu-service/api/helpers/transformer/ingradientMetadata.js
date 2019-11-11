@@ -20,8 +20,6 @@ function ingradientMetadata(data, userId, tenantId,orgId) {
 
     ingradientMetadata.prototype.ingradient.ingradientCategory = ingradientData.ingradientCategory;
     ingradientMetadata.prototype.ingradient.remark = ingradientData.remark;
-   
-   
 
 if(ingradientData.all){
     templateMetadata.prototype.ingradient.all = ingradientData.all;

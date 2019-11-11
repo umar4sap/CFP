@@ -1,0 +1,26 @@
+2019-11-11T11:57:27.735715000 0.011866s notice: Recursively removing directory /Users/zone/Documents/GitHub/CFP/recipe-engine-service/rethinkdb_data/tmp
+2019-11-11T11:57:27.737449000 0.013603s notice: Initializing directory /Users/zone/Documents/GitHub/CFP/recipe-engine-service/rethinkdb_data
+2019-11-11T11:57:27.737610000 0.013759s info: Creating a default database for your convenience. (This is because you ran 'rethinkdb' without 'create', 'serve', or '--join', and the directory '/Users/zone/Documents/GitHub/CFP/recipe-engine-service/rethinkdb_data' did not already exist or is empty.)
+2019-11-11T11:57:27.737658000 0.013807s notice: Running rethinkdb 2.3.6 (CLANG 8.1.0 (clang-802.0.42))...
+2019-11-11T11:57:27.749327000 0.025477s notice: Running on Darwin 17.7.0 x86_64
+2019-11-11T11:57:27.749407000 0.025556s notice: Loading data from directory /Users/zone/Documents/GitHub/CFP/recipe-engine-service/rethinkdb_data
+2019-11-11T11:57:27.896324000 0.172469s info: Automatically using cache size of 366 MB
+2019-11-11T11:57:27.901374000 0.177518s notice: Listening for intracluster connections on port 29015
+2019-11-11T11:57:27.904003000 0.180147s notice: Listening for client driver connections on port 28015
+2019-11-11T11:57:27.904279000 0.180445s notice: Listening for administrative HTTP connections on port 8080
+2019-11-11T11:57:27.906587000 0.182731s notice: Listening on cluster addresses: 127.0.0.1, 10.38.205.110, ::1, fe80::1%1, fe80::cf8:56e3:12e7:fda6%5, fe80::305c:74ff:fed7:b548%7, fe80::85dd:c25b:2514:c61c%10
+2019-11-11T11:57:27.908264000 0.184408s notice: Listening on driver addresses: 127.0.0.1, 10.38.205.110, ::1, fe80::1%1, fe80::cf8:56e3:12e7:fda6%5, fe80::305c:74ff:fed7:b548%7, fe80::85dd:c25b:2514:c61c%10
+2019-11-11T11:57:27.911136000 0.187280s notice: Listening on http addresses: 127.0.0.1, 10.38.205.110, ::1, fe80::1%1, fe80::cf8:56e3:12e7:fda6%5, fe80::305c:74ff:fed7:b548%7, fe80::85dd:c25b:2514:c61c%10
+2019-11-11T11:57:27.911151000 0.187294s notice: Server ready, "umars_MacBook_Air_local_h64" 2e238057-de4b-460d-a250-c32884b01858
+2019-11-11T11:57:42.010543000 14.286264s info: Table 504848ce-e5c2-4ce7-8688-2500b5201202: Starting a new Raft election for term 1.
+2019-11-11T11:57:42.011169000 14.286891s info: Table 504848ce-e5c2-4ce7-8688-2500b5201202: Added replica on this server.
+2019-11-11T11:57:42.047157000 14.322877s info: Table 7d46fa54-b5c5-448f-af71-a97f25998f1a: Starting a new Raft election for term 1.
+2019-11-11T11:57:42.058394000 14.334114s info: Table 7d46fa54-b5c5-448f-af71-a97f25998f1a: Added replica on this server.
+2019-11-11T11:57:42.058470000 14.334190s info: Table 51bf6bae-c70a-46c5-b766-9f1aa12f28a3: Starting a new Raft election for term 1.
+2019-11-11T11:57:42.059766000 14.335486s info: Table 51bf6bae-c70a-46c5-b766-9f1aa12f28a3: Added replica on this server.
+2019-11-11T11:57:42.060246000 14.335966s info: Table c60c469d-5755-4465-82c4-2e752c41e91b: Starting a new Raft election for term 1.
+2019-11-11T11:57:42.060764000 14.336484s info: Table c60c469d-5755-4465-82c4-2e752c41e91b: Added replica on this server.
+2019-11-11T11:57:42.085241000 14.360960s info: Table 504848ce-e5c2-4ce7-8688-2500b5201202: This server is Raft leader for term 1. Latest log index is 0.
+2019-11-11T11:57:42.100065000 14.375784s info: Table 7d46fa54-b5c5-448f-af71-a97f25998f1a: This server is Raft leader for term 1. Latest log index is 0.
+2019-11-11T11:57:42.100180000 14.375898s info: Table 51bf6bae-c70a-46c5-b766-9f1aa12f28a3: This server is Raft leader for term 1. Latest log index is 0.
+2019-11-11T11:57:42.100283000 14.376001s info: Table c60c469d-5755-4465-82c4-2e752c41e91b: This server is Raft leader for term 1. Latest log index is 0.
