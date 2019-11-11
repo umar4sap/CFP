@@ -9,7 +9,7 @@ COPY package.json /usr/src/recipe-engine-service
 RUN npm install
 
 # Bundle app source
-COPY . /usr/src/menu-service
+COPY . /usr/src/recipe-engine-service
 
 EXPOSE 8088
 CMD [ "npm", "start" ]
