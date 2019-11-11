@@ -162,8 +162,8 @@ enginerecipe.prototype.findAllEnginerecipes = (traceId,cb) => {
 
 
 // get enginerecipe 
-enginerecipe.prototype.getOneEnginerecipe= (traceId,enginerecipeId, cb) => {
-    rdb.table("cfp_recipe_engine_tb").get(enginerecipeId).run().then(function (result) {
+enginerecipe.prototype.getOneEnginerecipe= (traceId,recipeId,order_processing_id, cb) => {
+    rdb.table("cfp_recipe_engine_tb").filter({"recipe_id":recipeId,"order_processing_id":order_processing_id}).run().then(function (result) {
 
         if (result.length > 0) {
                         var resObj = { "status": "200", "data": result }

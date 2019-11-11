@@ -57,7 +57,7 @@ paths:
           description: Error getting enginerecipe Info
         default:
           description: Unexpected error
-  '/enginerecipe/recipe_id/order/order_processing_id':
+  '/enginerecipe/{recipe_id}/order/{order_processing_id}':
     x-swagger-router-controller: recipeEngineService
     put:
       tags:

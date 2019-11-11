@@ -95,10 +95,10 @@ function getEnginerecipeWithEnginerecipeId(req, res) {
     //  var tenantId = req.user.aud;
     // var carrierId = req.swagger.params.carrierId.value;
     //var userType= req.user[URL].userType;
-    var enginerecipe_id = req.swagger.params.enginerecipe_id.value;
+    var recipe_id = req.swagger.params.recipe_id.value;
+    var order_processing_id = req.swagger.params.order_processing_id.value;
 
-
-    (new Enginerecipe()).getOneEnginerecipe(traceId, enginerecipe_id,
+    (new Enginerecipe()).getOneEnginerecipe(traceId,recipe_id,order_processing_id,
         function (err, content) {
             console.log('after save...' + content)
             if (err) {
