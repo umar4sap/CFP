@@ -1,6 +1,6 @@
 module.exports = {
     rethinkdb: {
-        host: process.env.DB_HOST ||"52.188.192.123",  
+        host: process.env.DB_HOST ||"localhost",  
         port: process.env.DB_PORT || 28015,
         authKey: "",
         db: "cfp_recipe_engine_db",
