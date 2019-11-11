@@ -21,7 +21,7 @@ var app = restify.createServer({ log: log });
 var publicKey = fs.readFileSync(__dirname + '/config/cfp.pem');
 
 
-var port = "9006";
+var port = "9003";
 // var jwt = jwt({
 //     secret: publicKey,
 //    // secret: process.env.AUTH0_CLIENT_SECRET,
