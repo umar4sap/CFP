@@ -1,8 +1,8 @@
 _ = require("underscore");
-var Enginerecipe = require('../domain/enginerecipe');
+var Enginerecipe = require('../domain/recipeEngine');
 
 module.exports = {
-    createEnginerecipe: createEnginerecipe,
+    processRecipeEngine: processRecipeEngine,
     getEnginerecipes: getEnginerecipes,
     updateEnginerecipeWithEnginerecipeId: updateEnginerecipeWithEnginerecipeId,
     getEnginerecipeWithEnginerecipeId: getEnginerecipeWithEnginerecipeId,
@@ -15,7 +15,7 @@ module.exports = {
 
 
 // post a  network
-function createEnginerecipe(req, res) {
+function processRecipeEngine(req, res) {
     // var tokenId = req.headers.authorization;
     var userId = "airlineUser";
     var traceId = "test";
@@ -24,7 +24,7 @@ function createEnginerecipe(req, res) {
     //var userType= req.user[URL].userType;
     var bodyData = req.swagger.params.body.value;
 
-    (new Enginerecipe(bodyData)).createEnginerecipe(traceId, userId,
+    (new Enginerecipe(bodyData)).processRecipe(traceId, userId,
         function (err, content) {
             console.log('after save...' + content)
             if (err) {

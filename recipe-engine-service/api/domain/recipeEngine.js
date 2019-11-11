@@ -4,6 +4,7 @@ var _ = require('lodash'),
     dbconfig = require('../../config/db'),
     dbUtils = require('../helpers/db/db'),
     EnginerecipeMetadata = require('../helpers/transformer/enginerecipeMetadata'),
+    recipeClient = require('../helpers/client/recipeclient'),
     Logger = require('bunyan');
 var request = require("request");
 var moment = require('moment');
@@ -38,7 +39,7 @@ verification.prototype.getData = function () {
 
 
 // create new enginerecipe for airline
-enginerecipe.prototype.createEnginerecipe=(traceId,userId, cb) => {
+enginerecipe.prototype.processRecipe=(traceId,userId, cb) => {
     // enginerecipe.prototype.data['createdDTS'] = moment.utc().format();
     // enginerecipe.prototype.data['updatedDTS'] = moment.utc().format();
     var enginerecipeMetadata = new EnginerecipeMetadata(enginerecipe.prototype.data).getData();
@@ -55,6 +56,22 @@ enginerecipe.prototype.createEnginerecipe=(traceId,userId, cb) => {
         statusCode: 404,
         errorCode: "code1"
     }
+  var measurementTypes=['kg','g','ml']
+    recipeClient.getRecipe(enginerecipeMetadata.recipe_id,"test",function(err,data){
+        if(!err){
+            var ingradients=data.ingradients;
+            var samplePerCount=data.perCount;
+            var orderPerCount=enginerecipeMetadata.paxCount;
+            ingradients.forEach(element => {
+                if(element.measurement_type['kg']){
+                    
+                }
+            });
+        }
+
+
+
+    })
      rdb.table("cfp_enginerecipe_tb").insert(enginerecipeMetadata).run().then(function (enginerecipeData) {
          console.log(JSON.stringify(enginerecipeData.generated_keys[0]));
              var resObj = { "status": "200", "data": { "message": "Your enginerecipe has been submitted and the enginerecipe id is -> "+ enginerecipeData.generated_keys[0] } }

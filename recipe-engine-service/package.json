@@ -24,6 +24,7 @@
     "rethink": "^1.4.0",
     "rethinkdbdash": "^2.3.31",
     "swagger-restify-mw": "^0.7.0",
+    "truffled": "^0.3.0",
     "underscore": "^1.8.3",
     "validate": "^3.0.1"
   },
