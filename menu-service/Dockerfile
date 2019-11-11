@@ -1,11 +1,11 @@
 FROM node:boron
 
 # Create app directory
-RUN mkdir -p /usr/src/carrier-listing-service
-WORKDIR /usr/src/carrier-listing-service
+RUN mkdir -p /usr/src/menu-service
+WORKDIR /usr/src/menu-service
 
 # Install app dependencies
-COPY package.json /usr/src/carrier-listing-service
+COPY package.json /usr/src/menu-service
 RUN npm install
 
 # Bundle app source
