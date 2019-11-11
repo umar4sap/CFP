@@ -7,17 +7,18 @@ info:
     name: API Support
     email: mohammad.umaruddin@dnata.com
 host: '52.188.192.123:9002'
-basePath: /cfp/services/menu-service
+basePath: /cfp/services/recipe-engine-service
 schemes:
   - http
 paths:
   /enginerecipe/:
+    x-swagger-router-controller: recipeEngineService
     post:
       tags:
         - enginerecipe process
       summary: create and process enginerecipe for airlines.
       description: Airline can place enginerecipe for catering
-      operationId: createEnginerecipe
+      operationId: processRecipeEngine
       consumes:
         - application/json
       produces:
@@ -56,7 +57,8 @@ paths:
           description: Error getting enginerecipe Info
         default:
           description: Unexpected error
-  '/enginerecipe/{enginerecipe_id}':
+  '/enginerecipe/recipe_id/order/order_processing_id':
+    x-swagger-router-controller: recipeEngineService
     put:
       tags:
         - enginerecipe process
@@ -68,7 +70,11 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: enginerecipe_id
+        - name: recipe_id
+          in: path
+          type: string
+          required: true
+        - name: order_processing_id
           in: path
           type: string
           required: true
@@ -76,7 +82,7 @@ paths:
           in: body
           required: true
           schema:
-            $ref: '#/definitions/updateEnginerecipeDetails'
+            $ref: '#/definitions/enginerecipeSearch'
       responses:
         '200':
           description: lists details
@@ -96,7 +102,11 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: enginerecipe_id
+        - name: recipe_id
+          in: path
+          type: string
+          required: true
+        - name: order_processing_id
           in: path
           type: string
           required: true
@@ -110,87 +120,12 @@ paths:
           description: Error getting enginerecipe Info
         default:
           description: Unexpected error
-  '/enginerecipe/status/{status}':
-    get:
-      tags:
-        - enginerecipe process details for masterchef
-      summary: get enginerecipe details with status processed or pending or not processed or rejected
-      description: create and process enginerecipe for all airlines
-      operationId: getAllEnginerecipesWithStatus
-      produces:
-        - application/json
-      parameters:
-        - name: status
-          in: path
-          type: string
-          required: true
-      responses:
-        '200':
-          description: enginerecipe details
-          schema:
-            type: object
-            properties: {}
-        '400':
-          description: Error creating a new enginerecipe
-        default:
-          description: Unexpected error
-  /enginerecipe/search/api/v1:
-    post:
-      tags:
-        - enginerecipe process
-      summary: create and process enginerecipe for airlines.
-      description: Airline can place enginerecipe for catering
-      operationId: getAllEnginerecipesWithSearchCretria
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - name: body
-          in: body
-          required: true
-          schema:
-            $ref: '#/definitions/enginerecipeSearch'
-      responses:
-        '200':
-          description: enginerecipe details
-          schema:
-            type: object
-            properties: {}
-        '400':
-          description: Error creating a new enginerecipe
-        default:
-          description: Unexpected error
-  /enginerecipe/selected/api:
-    post:
-      tags:
-        - enginerecipe process
-      summary: create and process enginerecipe for airlines.
-      description: Airline can place enginerecipe for catering
-      operationId: getAllEnginerecipesWithenginerecipeCodes
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - name: body
-          in: body
-          required: true
-          schema:
-            $ref: '#/definitions/enginerecipeSearch'
-      responses:
-        '200':
-          description: enginerecipe details
-          schema:
-            type: object
-            properties: {}
-        '400':
-          description: Error creating a new enginerecipe
-        default:
-          description: Unexpected error
-  /swagger: {}
+  /swagger: 
+    x-swagger-pipe: swagger_raw
 definitions:
-  orderDetails:
+  enginerecipeDetails:
+    type: object
+  enginerecipeSearch:
     type: object
   
   
