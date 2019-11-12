@@ -5,6 +5,7 @@ var _ = require('lodash'),
     dbUtils = require('../helpers/db/db'),
     OrderMetadata = require('../helpers/transformer/orderMetadata'),
     WhatsappClient = require('../helpers/client/whatsapp-client'),
+    AnalyticsClient = require('../helpers/client/reporting-client'),
     Logger = require('bunyan');
 var request = require("request");
 var moment = require('moment');
@@ -41,7 +42,7 @@ verification.prototype.getData = function () {
 // create new order for airline
 order.prototype.createOrder=(traceId,userId,carrierCode, cb) => {
     order.prototype.data['createddate'] = moment.utc().format();
-    order.prototype.data['updateddate'] = moment.utc().format();
+    order.prototype.data['updatedate'] = moment.utc().format();
     var orderMetadata = new OrderMetadata(order.prototype.data).getData();
     
     // orderMetadata.expringDate=new Date(new Date().getTime()+(180*24*60*60*1000));
@@ -64,6 +65,13 @@ order.prototype.createOrder=(traceId,userId,carrierCode, cb) => {
             console.log("unable to notify"+err);
          }
          })
+         AnalyticsClient.sendToReporting(orderMetadata,orderData.generated_keys[0],"traceid",function(err,res){
+            if(!err){
+                console.log("sent to analystics"+res);
+            }else{
+               console.log("unable to send to analystics"+err);
+            }
+            })
              var resObj = { "status": "200", "data": { "message": "Your order has been submitted and the order id is -> "+ orderData.generated_keys[0] } }
                     cb(null,resObj);
                 }).catch(function (err) {

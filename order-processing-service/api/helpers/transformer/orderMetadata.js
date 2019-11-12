@@ -32,7 +32,7 @@ function orderMetadata(data, userId, tenantId,orgId) {
     
 }
     orderMetadata.prototype.order.orderStatus = orderData.orderStatus;
-    orderMetadata.prototype.order.updatedate = orderData.updatedDTS;
+    orderMetadata.prototype.order.updatedate = orderData.updatedate;
     orderMetadata.prototype.order.updatedBy = orderData.updatedBy;
 
 
