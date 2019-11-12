@@ -8,7 +8,7 @@ module.exports = {
     tables: [
         {
             table: "cfp_order_processing_tb",
-            id:"processingId"
+            id:"order_processing_id"
         }
     ]
 }

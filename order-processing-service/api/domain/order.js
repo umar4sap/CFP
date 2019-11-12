@@ -4,6 +4,7 @@ var _ = require('lodash'),
     dbconfig = require('../../config/db'),
     dbUtils = require('../helpers/db/db'),
     OrderMetadata = require('../helpers/transformer/orderMetadata'),
+    WhatsappClient = require('../helpers/client/whatsapp-client'),
     Logger = require('bunyan');
 var request = require("request");
 var moment = require('moment');
@@ -39,8 +40,8 @@ verification.prototype.getData = function () {
 
 // create new order for airline
 order.prototype.createOrder=(traceId,userId,carrierCode, cb) => {
-    order.prototype.data['createdDTS'] = moment.utc().format();
-    order.prototype.data['updatedDTS'] = moment.utc().format();
+    order.prototype.data['createddate'] = moment.utc().format();
+    order.prototype.data['updateddate'] = moment.utc().format();
     var orderMetadata = new OrderMetadata(order.prototype.data).getData();
     
     // orderMetadata.expringDate=new Date(new Date().getTime()+(180*24*60*60*1000));
@@ -55,6 +56,14 @@ order.prototype.createOrder=(traceId,userId,carrierCode, cb) => {
     }
      rdb.table("cfp_order_processing_tb").insert(orderMetadata).run().then(function (orderData) {
          console.log(JSON.stringify(orderData.generated_keys[0]));
+        var  message="Catering Order for Flight "+ orderMetadata.carrierCode+orderMetadata.flightNo+" is sent for your review and approval for order id "+orderData.generated_keys[0] +" expected deleviry date "+orderMetadata.expectedDeliveryDateAndTime;
+         WhatsappClient.sendWhatsAppMessage(message,"traceid",function(err,res){
+         if(!err){
+             console.log("notified"+res);
+         }else{
+            console.log("unable to notify"+err);
+         }
+         })
              var resObj = { "status": "200", "data": { "message": "Your order has been submitted and the order id is -> "+ orderData.generated_keys[0] } }
                     cb(null,resObj);
                 }).catch(function (err) {

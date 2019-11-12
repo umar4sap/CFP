@@ -20,20 +20,19 @@ function orderMetadata(data, userId, tenantId,orgId) {
     orderMetadata.prototype.order.boardingPoint = orderData.boardingPoint;
     orderMetadata.prototype.order.destination = orderData.destination;
     orderMetadata.prototype.order.orderedBy = orderData.orderedBy;
-    orderMetadata.prototype.order.mealDetails = orderData.mealDetails;
-    if(orderData.mealDetails){
-    orderMetadata.prototype.order.mealDetails.totalPaxCount = orderData.mealDetails.totalPaxCount;
-    orderMetadata.prototype.order.mealDetails.totalMealsCode = orderData.mealDetails.totalMealsCode;
-    orderMetadata.prototype.order.mealDetails.mealsType = orderData.mealDetails.mealsType;
-    orderMetadata.prototype.order.mealDetails.totalMealChoice = orderData.mealDetails.totalMealChoice;
+    orderMetadata.prototype.order.overallPaxCount = orderData.overallPaxCount;
+    orderMetadata.prototype.order.crewCount = orderData.crewCount;
+    orderMetadata.prototype.order.templateDetails = orderData.templateDetails;
+    if(orderData.templateDetails){
+        //array of templates
+  //  orderMetadata.prototype.order.mealDetails.totalPaxCount = orderData.mealDetails.totalPaxCount;
+   // orderMetadata.prototype.order.mealDetails.totalMealsCode = orderData.mealDetails.totalMealsCode;
+  //  orderMetadata.prototype.order.mealDetails.mealsType = orderData.mealDetails.mealsType;
+  //  orderMetadata.prototype.order.mealDetails.totalMealChoice = orderData.mealDetails.totalMealChoice;
     
-    if(orderData.mealDetails.mealInfo){
-    orderMetadata.prototype.order.mealDetails.mealInfo = orderData.mealDetails.mealInfo
-    }
 }
     orderMetadata.prototype.order.orderStatus = orderData.orderStatus;
-    orderMetadata.prototype.order.destinations = orderData.destinations;
-    orderMetadata.prototype.order.updatedDTS = orderData.updatedDTS;
+    orderMetadata.prototype.order.updatedate = orderData.updatedDTS;
     orderMetadata.prototype.order.updatedBy = orderData.updatedBy;
 
 
