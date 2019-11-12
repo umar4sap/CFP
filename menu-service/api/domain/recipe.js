@@ -197,7 +197,7 @@ recipe.prototype.findAllRecipesWithStatus = (traceId,status,cb) => {
 recipe.prototype.searchRecipe=(traceId, cb) => {
     // menu.prototype.data['createdDTS'] = moment.utc().format();
     // menu.prototype.data['updatedDTS'] = moment.utc().format();
-    var recipeMetadata = new RecipeMetadata(menu.prototype.data).getData();
+    var recipeMetadata = new RecipeMetadata(recipe.prototype.data).getData();
     
     // menuMetadata.expringDate=new Date(new Date().getTime()+(180*24*60*60*1000));
     // menuMetadata.listedDate=new Date();

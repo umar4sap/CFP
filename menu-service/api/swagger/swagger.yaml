@@ -486,7 +486,7 @@ paths:
         - recipe process
       summary: create and process recipe for airlines.
       description: Airline can place recipe for catering
-      operationId: getAllRecipesWithSearchCretria
+      operationId: getAllRecipseWithSearchCretria
       consumes:
         - application/json
       produces:
