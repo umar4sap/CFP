@@ -31,7 +31,7 @@ function recipeMetadata(data, userId, tenantId,orgId) {
     //ingradientName:biryani}
 }
 if(recipeData.all){
-    recipeMetadata.prototype.recipeData.all = recipeData.all;
+    recipeMetadata.prototype.recipe.all = recipeData.all;
 }
 
 if(recipeData.cookingSteps){
