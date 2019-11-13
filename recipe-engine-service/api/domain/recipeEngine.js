@@ -352,9 +352,10 @@ enginerecipe.prototype.getAllWithenginerecipeCodes=(traceId, cb) => {
             console.log(values);
             values.forEach(element=>{
                 if(element.recipe_id){
+                    
+                    enginerecipeMetadata=element;
                     enginerecipeMetadata.enginerecipeStatus="READY"
                     enginerecipeMetadata.order_processing_id=order_processing_id;
-                    enginerecipeMetadata=element;
             rdb.table("cfp_recipe_engine_tb").insert(enginerecipeMetadata).run().then(function (enginerecipeData) {
                 console.log(JSON.stringify(enginerecipeData.generated_keys[0]));
                     
