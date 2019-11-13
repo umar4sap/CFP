@@ -1,7 +1,7 @@
 'use strict';
 var Logger = require('bunyan');
 const request = require('request-promise');
-const recipe_engine_service = process.env.RECIPE_ENGINE_SERVICE_ENDPOINT|| "//http://52.188.192.123:9003";
+const recipe_engine_service = process.env.RECIPE_ENGINE_SERVICE_ENDPOINT|| "http://52.188.192.123:9003";
 
 const basePath= "/cfp/services/recipe-engine-service";
 

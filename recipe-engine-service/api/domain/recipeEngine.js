@@ -317,6 +317,7 @@ enginerecipe.prototype.getAllWithenginerecipeCodes=(traceId, cb) => {
 
  function generateRecipes(enginerecipeMetadata,recipesList){
     var totalRecipe=enginerecipeMetadata.recipes.length;
+    var order_processing_id=enginerecipeMetadata.order_processing_id;
     var data=enginerecipeMetadata;
     var regeratedRecipe=0;
     var regeratedRecipeProcessed=1;
@@ -351,6 +352,7 @@ enginerecipe.prototype.getAllWithenginerecipeCodes=(traceId, cb) => {
             values.forEach(element=>{
                 if(element.recipe_id){
                     enginerecipeMetadata.enginerecipeStatus="READY"
+                    enginerecipeMetadata.order_processing_id=order_processing_id;
                     enginerecipeMetadata=element;
             rdb.table("cfp_recipe_engine_tb").insert(enginerecipeMetadata).run().then(function (enginerecipeData) {
                 console.log(JSON.stringify(enginerecipeData.generated_keys[0]));

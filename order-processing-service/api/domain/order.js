@@ -59,7 +59,7 @@ order.prototype.createOrder=(traceId,userId,carrierCode, cb) => {
     }
      rdb.table("cfp_order_processing_tb").insert(orderMetadata).run().then(function (orderData) {
          console.log(JSON.stringify(orderData.generated_keys[0]));
-        var  message="Catering Order for Flight "+ orderMetadata.carrierCode+orderMetadata.flightNo+" is sent for your review and approval for order id :"+orderData.generated_keys[0] +" deleviry date :"+orderMetadata.expectedDeliveryDateAndTime;
+        var  message="Catering Order for Flight "+ orderMetadata.carrierCode+orderMetadata.flightNo+" is sent for your review and approval for order id : "+orderData.generated_keys[0] +" deleviry date : "+orderMetadata.expectedDeliveryDateAndTime;
         var requestData={
             "order_processing_id": orderData.generated_keys[0],
             "template_id": orderMetadata.templateDetails[0].template_id,
@@ -69,16 +69,16 @@ order.prototype.createOrder=(traceId,userId,carrierCode, cb) => {
           }
          WhatsappClient.sendWhatsAppMessage(message,"traceid",function(err,res){
          if(!err){
-             console.log("notified"+res);
+             console.log("notified to on whats app"+res);
          }else{
-            console.log("unable to notify"+err);
+            console.log("unable to notify "+err);
          }
          })
          RecipeEngineClient.generateRecipe(requestData,"traceid",function(err,res){
             if(!err){
-                console.log("notified"+res);
+                console.log("Recipe generation intiate"+res);
             }else{
-               console.log("unable to notify"+err);
+               console.log("unable to initiate recipe generation"+err);
             }
             })
 
