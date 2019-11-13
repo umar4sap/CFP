@@ -91,6 +91,7 @@ enginerecipe.prototype.processAllRecipe=(traceId,userId, cb) => {
     var enginerecipeMetadata = new EnginerecipeMetadata(enginerecipe.prototype.data).getData();
     enginerecipeMetadata.createdDate=moment.utc().format();
     enginerecipeMetadata.updatedDate=moment.utc().format();
+    var order_processing_id=enginerecipeMetadata.order_processing_id
     enginerecipeMetadata.createddBy=userId;
     enginerecipeMetadata.updatedBy="Recipe Engine";
     var response = {
@@ -99,8 +100,8 @@ enginerecipe.prototype.processAllRecipe=(traceId,userId, cb) => {
         errorCode: "code1"
     }
   var measurementTypes=['kg','g','ml']
-  var recipesList=enginerecipeMetadata.recipes;
-  generateRecipes(enginerecipeMetadata,recipesList);
+  var recipesList=enginerecipeMetadata.recipes; 
+  generateRecipes(enginerecipeMetadata,recipesList,order_processing_id);
   console.log("initiated recipe generation for order "+enginerecipeMetadata.order_processing_id)
   var resObj = { "status": "200", "data": { "message": enginerecipeMetadata.order_processing_id+ " Recipe info is initiated"} }
   cb(null,resObj);
@@ -315,9 +316,9 @@ enginerecipe.prototype.getAllWithenginerecipeCodes=(traceId, cb) => {
 
 
 
- function generateRecipes(enginerecipeMetadata,recipesList){
+ function generateRecipes(enginerecipeMetadata,recipesList,order_processing_id){
     var totalRecipe=enginerecipeMetadata.recipes.length;
-    var order_processing_id=enginerecipeMetadata.order_processing_id;
+    var order_processing_id=order_processing_id;
     var data=enginerecipeMetadata;
     var regeratedRecipe=0;
     var regeratedRecipeProcessed=1;
