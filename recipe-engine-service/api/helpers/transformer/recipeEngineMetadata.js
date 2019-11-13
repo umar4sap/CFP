@@ -16,9 +16,13 @@ function enginerecipeMetadata(data, userId, tenantId,orgId) {
     enginerecipeMetadata.prototype.enginerecipe.recipe_id=enginerecipeData.recipe_id;
     enginerecipeMetadata.prototype.enginerecipe.paxCount = enginerecipeData.paxCount;
     enginerecipeMetadata.prototype.enginerecipe.crewCount = enginerecipeData.crewCount;
+    enginerecipeMetadata.prototype.enginerecipe.templateId=enginerecipeData.templateId;
 
 if(enginerecipeData.all){
     enginerecipeMetadata.prototype.enginerecipe.all = enginerecipeData.all;
+}
+if(enginerecipeData.recipes){
+    enginerecipeMetadata.prototype.enginerecipe.recipes = enginerecipeData.recipes;
 }
   
     enginerecipeMetadata.prototype.enginerecipe.enginerecipeStatus = enginerecipeData.enginerecipeStatus;

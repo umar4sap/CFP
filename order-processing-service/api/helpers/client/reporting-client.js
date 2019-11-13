@@ -3,7 +3,7 @@ var Logger = require('bunyan');
 const request = require('request-promise');
 const reporting_service = process.env.REPORTING_SERVICE_ENDPOINT|| "https://waweb-cncwa-test.ek.aero";
 
-const basePath= "/cfporder/_doc/10010";
+const basePath= "/cfporder/_doc/";
 
 var log = new Logger.createLogger({ 
 name: 'reporting-clients', 
@@ -13,7 +13,7 @@ serializers: { req: Logger.stdSerializers.req }
 
 var sendToReporting = function(reportingdata,order_id, traceId,cb) {
   // var phone_number=process.env.WHATS_APP_NUMBER || "971503961047";
-var uri = reporting_service + basePath;
+var uri = reporting_service + basePath+order_id;
 var requestData={
     "orderID": order_id,
     "OrderCode": reportingdata.orderReceiptNumber,

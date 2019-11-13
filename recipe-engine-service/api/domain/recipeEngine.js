@@ -57,38 +57,61 @@ enginerecipe.prototype.processRecipe=(traceId,userId, cb) => {
         errorCode: "code1"
     }
   var measurementTypes=['kg','g','ml']
-    recipeClient.getRecipe(enginerecipeMetadata.recipe_id,"test",function(err,res){
-        if(!err){
-            var ingradients=res.data.ingradients;
-            var samplePerCount=res.data.perCount;
-            var orderPerCount=enginerecipeMetadata.paxCount;
-            ingradients.forEach(element => {
-                if(element.measurement_value){
-                var oldIngredientAmount = element.measurement_value;
-                var newIngredientAmount = oldIngredientAmount * orderPerCount / samplePerCount;
-                element.measurement_value=newIngredientAmount;
-                }
-            });
-            enginerecipeMetadata.ingradients=ingradients;
-            rdb.table("cfp_recipe_engine_tb").insert(enginerecipeMetadata).run().then(function (enginerecipeData) {
-                console.log(JSON.stringify(enginerecipeData.generated_keys[0]));
-                    var resObj = { "status": "200", "data": enginerecipeMetadata }
-                           cb(null,resObj);
-                       }).catch(function (err) {
-                           console.log("first err catch")
-                           log.error("TraceId : %s, Error : %s", traceId, JSON.stringify(err));
-                           
-                           cb(response);
-                       });  
-        }else{
-            cb(response);
+  generateRecipe(enginerecipeMetadata,function(err,res){
+      if(!err){
+        enginerecipeMetadata.enginerecipeStatus="READY"
+    rdb.table("cfp_recipe_engine_tb").insert(enginerecipeMetadata).run().then(function (enginerecipeData) {
+        console.log(JSON.stringify(enginerecipeData.generated_keys[0]));
+            var resObj = { "status": "200", "data": enginerecipeMetadata }
+                   cb(null,resObj);
+               }).catch(function (err) {
+                   console.log("first err catch")
+                   log.error("TraceId : %s, Error : %s", traceId, JSON.stringify(err));
+                   
+                   cb(response);
+               });  
+            }else{
+                enginerecipeMetadata.enginerecipeStatus="FAILED TO GENERATE"
+                rdb.table("cfp_recipe_engine_tb").insert(enginerecipeMetadata).run().then(function (enginerecipeData) {
+                    console.log(JSON.stringify(enginerecipeData.generated_keys[0]));
+                        var resObj = { "status": "200", "data": enginerecipeMetadata }
+                               cb(null,resObj);
+                           }).catch(function (err) {
+                               console.log("first err catch")
+                               log.error("TraceId : %s, Error : %s", traceId, JSON.stringify(err));
+                               
+                               cb(response);
+                           }); 
+            }
+  })
+    
         }
-
-
-
-    })
+// create new enginerecipe for airline
+enginerecipe.prototype.processAllRecipe=(traceId,userId, cb) => {
+    var enginerecipeMetadata = new EnginerecipeMetadata(enginerecipe.prototype.data).getData();
+    enginerecipeMetadata.createdDate=moment.utc().format();
+    enginerecipeMetadata.updatedDate=moment.utc().format();
+    enginerecipeMetadata.createddBy=userId;
+    enginerecipeMetadata.updatedBy="Recipe Engine";
+    var response = {
+        message: "Cannot create the enginerecipe.",
+        statusCode: 404,
+        errorCode: "code1"
+    }
+  var measurementTypes=['kg','g','ml']
+  var recipesList=enginerecipeMetadata.recipes;
+  generateRecipes(enginerecipeMetadata,recipesList);
+  console.log("initiated recipe generation for order "+enginerecipeMetadata.order_processing_id)
+  var resObj = { "status": "200", "data": { "message": enginerecipeMetadata.order_processing_id+ " Recipe info is initiated"} }
+  cb(null,resObj);
+  
   
         }
+
+
+
+
+
 
 // update enginerecipe for owner
 enginerecipe.prototype.updateEnginerecipeById =(traceId, enginerecipeId , cb) => {
@@ -292,6 +315,68 @@ enginerecipe.prototype.getAllWithenginerecipeCodes=(traceId, cb) => {
 
 
 
+ function generateRecipes(enginerecipeMetadata,recipesList){
+    var totalRecipe=enginerecipeMetadata.recipes.length;
+    var regeratedRecipe=0;
+    recipesList.forEach(element => {
+        enginerecipeMetadata.recipe_id=element.recipe_id;
+        enginerecipeMetadata.paxCount=element.paxCount;
+        enginerecipeMetadata.crewCount=element.crewCount;
+        generateRecipe(enginerecipeMetadata,function(err,res){
+            if(!err){
+                res.enginerecipeStatus="READY"
+          rdb.table("cfp_recipe_engine_tb").insert(enginerecipeMetadata).run().then(function (enginerecipeData) {
+              console.log(JSON.stringify(enginerecipeData.generated_keys[0]));
+              regeratedRecipe=regeratedRecipe+1;
+              console.log("Generated Recipe for "+enginerecipeData.order_processing_id+" Recipe id "+enginerecipeData.recipe_id)
+              if(totalRecipe==regeratedRecipe){
+                 console.log("All recipes generated")
+              }
+                     }).catch(function (err) {
+                         console.log("first err catch")
+                         log.error("TraceId : %s, Error : %s", traceId, JSON.stringify(err));
+                         
+                         
+                     });  
+                  }else{
+                    err.enginerecipeStatus="FAILED TO GENERATE";
+                      console.log("Failed to generate recipe for "+enginerecipeMetadata.recipe_id);
+                      rdb.table("cfp_recipe_engine_tb").insert(enginerecipeMetadata).run().then(function (enginerecipeData) {
+                          console.log(JSON.stringify(enginerecipeData.generated_keys[0]));
+                              var resObj = { "status": "200", "data": enginerecipeMetadata }
+                                    
+                                 }).catch(function (err) {
+                                     console.log("first err catch")
+                                     log.error("TraceId : %s, Error : %s", traceId, JSON.stringify(err));
+                                     
+                                    
+                                 }); 
+                  }
+        })
+      });  
+ }   
+
+function generateRecipe(enginerecipeMetadata,cb){
+    recipeClient.getRecipe(enginerecipeMetadata.recipe_id,"test",function(err,res){
+        if(!err || res.status=="400"){
+            var ingradients=res.data.ingradients;
+            var samplePerCount=res.data.perCount;
+            var orderPerCount=enginerecipeMetadata.paxCount;
+            
+            ingradients.forEach(element => {
+                if(element.measurement_value){
+                var oldIngredientAmount = element.measurement_value;
+                var newIngredientAmount = oldIngredientAmount * orderPerCount / samplePerCount;
+                element.measurement_value=newIngredientAmount;
+                }
+            });
+            enginerecipeMetadata.ingradients=ingradients;
+            return(null,enginerecipeMetadata)
+        }else{
+            return(enginerecipeMetadata)
+        }
+        })
+    }
 
 
 module.exports = enginerecipe;

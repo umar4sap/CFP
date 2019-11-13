@@ -27,7 +27,7 @@ function createRecipe(req, res) {
             console.log('after save...' + content)
             if (err) {
                 console.log("errrrrrrrrrrr")
-                res.send(JSON.stringify(err));
+                res.send(err);
                 log.error("TraceId : %s, Error : %s", traceId, JSON.stringify(err));
             } else {
                 res.json(content);
@@ -52,7 +52,7 @@ function updateRecipeWithRecipeId(req, res) {
             console.log('after save...' + content)
             if (err) {
                 console.log("errrrrrrrrrrr")
-                res.send(JSON.stringify(err));
+                res.send(err);
                 log.error("TraceId : %s, Error : %s", traceId, JSON.stringify(err));
             } else {
                 res.json(content);
@@ -77,7 +77,7 @@ function getRecipes(req, res) {
             console.log('after save...' + content)
             if (err) {
                 console.log("errrrrrrrrrrr")
-                res.send(JSON.stringify(err));
+                res.send(err);
                 log.error("TraceId : %s, Error : %s", traceId, JSON.stringify(err));
             } else {
                 res.json(content);
@@ -101,7 +101,7 @@ function getRecipeWithRecipeId(req, res) {
             console.log('after save...' + content)
             if (err) {
                 console.log("errrrrrrrrrrr")
-                res.send(JSON.stringify(err));
+                res.send(err);
                 log.error("TraceId : %s, Error : %s", traceId, JSON.stringify(err));
             } else {
                 res.json(content);
@@ -124,7 +124,7 @@ function deleteRecipe(req, res) {
             console.log('after save...' + content)
             if (err) {
                 console.log("errrrrrrrrrrr")
-                res.send(JSON.stringify(err));
+                res.send(err);
                 log.error("TraceId : %s, Error : %s", traceId, JSON.stringify(err));
             } else {
                 res.json(content);
@@ -148,7 +148,7 @@ function getAllRecipesWithStatus(req, res) {
             console.log('after save...' + content)
             if (err) {
                 console.log("errrrrrrrrrrr")
-                res.send(JSON.stringify(err));
+                res.send(err);
                 log.error("TraceId : %s, Error : %s", traceId, JSON.stringify(err));
             } else {
                 res.json(content);
@@ -169,7 +169,7 @@ function getAllRecipseWithSearchCretria(req, res) {
             console.log('after save...' + content)
             if (err) {
                 console.log("errrrrrrrrrrr")
-                res.send(JSON.stringify(err));
+                res.send(err);
                 log.error("TraceId : %s, Error : %s", traceId, JSON.stringify(err));
             } else {
                 res.json(content);

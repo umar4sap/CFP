@@ -3,6 +3,7 @@ var Enginerecipe = require('../domain/recipeEngine');
 
 module.exports = {
     processRecipeEngine: processRecipeEngine,
+    processAllRecipeEngine: processAllRecipeEngine,
     getEnginerecipes: getEnginerecipes,
     updateEnginerecipeWithEnginerecipeId: updateEnginerecipeWithEnginerecipeId,
     getEnginerecipeWithEnginerecipeId: getEnginerecipeWithEnginerecipeId,
@@ -37,7 +38,27 @@ function processRecipeEngine(req, res) {
         });
 }
 
+function processAllRecipeEngine(req, res) {
+    // var tokenId = req.headers.authorization;
+    var userId = "airlineUser";
+    var traceId = "test";
+    //var tenantId = req.user.aud;
+    
+    //var userType= req.user[URL].userType;
+    var bodyData = req.swagger.params.body.value;
 
+    (new Enginerecipe(bodyData)).processAllRecipe(traceId, userId,
+        function (err, content) {
+            console.log('after save...' + content)
+            if (err) {
+                console.log("errrrrrrrrrrr")
+                res.send(JSON.stringify(err));
+                log.error("TraceId : %s, Error : %s", traceId, JSON.stringify(err));
+            } else {
+                res.json(content);
+            }
+        });
+}
 
 function updateEnginerecipeWithEnginerecipeId(req, res) {
     //   var tokenId = req.headers.authorization;

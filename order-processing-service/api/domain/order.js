@@ -49,6 +49,7 @@ order.prototype.createOrder=(traceId,userId,carrierCode, cb) => {
     // orderMetadata.listedDate=new Date();
     orderMetadata.orderedBy=userId;
     orderMetadata.carrierCode=carrierCode;
+    orderMetadata.orderStaus="inreview"
    // orderMetadata.airlineId=airlineId;
     var response = {
         message: "Cannot create the order.",
@@ -57,7 +58,7 @@ order.prototype.createOrder=(traceId,userId,carrierCode, cb) => {
     }
      rdb.table("cfp_order_processing_tb").insert(orderMetadata).run().then(function (orderData) {
          console.log(JSON.stringify(orderData.generated_keys[0]));
-        var  message="Catering Order for Flight "+ orderMetadata.carrierCode+orderMetadata.flightNo+" is sent for your review and approval for order id "+orderData.generated_keys[0] +" expected deleviry date "+orderMetadata.expectedDeliveryDateAndTime;
+        var  message="Catering Order for Flight "+ orderMetadata.carrierCode+orderMetadata.flightNo+" is sent for your review and approval for order id :"+orderData.generated_keys[0] +" deleviry date :"+orderMetadata.expectedDeliveryDateAndTime;
          WhatsappClient.sendWhatsAppMessage(message,"traceid",function(err,res){
          if(!err){
              console.log("notified"+res);

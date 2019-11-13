@@ -57,6 +57,34 @@ paths:
           description: Error getting enginerecipe Info
         default:
           description: Unexpected error
+  /enginerecipe/all:
+    x-swagger-router-controller: recipeEngineService
+    post:
+      tags:
+        - enginerecipe process
+      summary: create and process enginerecipe for airlines.
+      description: Airline can place enginerecipe for catering
+      operationId: processAllRecipeEngine
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/enginerecipeDetails'
+      responses:
+        '200':
+          description: enginerecipe details
+          schema:
+            type: object
+            properties: {}
+        '400':
+          description: Error creating a new enginerecipe
+        default:
+          description: Unexpected error
   '/enginerecipe/{recipe_id}/order/{order_processing_id}':
     x-swagger-router-controller: recipeEngineService
     put:
@@ -127,5 +155,4 @@ definitions:
     type: object
   enginerecipeSearch:
     type: object
-  
   
