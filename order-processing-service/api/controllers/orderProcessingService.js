@@ -26,7 +26,7 @@ function createOrderForAirline(req, res) {
                     console.log('after save...'+content)
                     if (err) {
                         console.log("errrrrrrrrrrr")
-                        res.send(JSON.stringify(err));
+                        res.send(err);
                         log.error("TraceId : %s, Error : %s", traceId, JSON.stringify(err));
                     } else {
                         res.json(content);
@@ -51,7 +51,7 @@ function createOrderForAirline(req, res) {
                             console.log('after save...'+content)
                             if (err) {
                                 console.log("errrrrrrrrrrr")
-                                res.send(JSON.stringify(err));
+                                res.send(err);
                                 log.error("TraceId : %s, Error : %s", traceId, JSON.stringify(err));
                             } else {
                                 res.json(content);
@@ -76,7 +76,7 @@ function createOrderForAirline(req, res) {
                                     console.log('after save...'+content)
                                     if (err) {
                                         console.log("errrrrrrrrrrr")
-                                        res.send(JSON.stringify(err));
+                                        res.send(err);
                                         log.error("TraceId : %s, Error : %s", traceId, JSON.stringify(err));
                                     } else {
                                         res.json(content);
@@ -100,7 +100,7 @@ function createOrderForAirline(req, res) {
                                                     console.log('after save...'+content)
                                                     if (err) {
                                                         console.log("errrrrrrrrrrr")
-                                                        res.send(JSON.stringify(err));
+                                                        res.send(err);
                                                         log.error("TraceId : %s, Error : %s", traceId, JSON.stringify(err));
                                                     } else {
                                                         res.json(content);
@@ -123,7 +123,7 @@ function createOrderForAirline(req, res) {
                                                             console.log('after save...'+content)
                                                             if (err) {
                                                                 console.log("errrrrrrrrrrr")
-                                                                res.send(JSON.stringify(err));
+                                                                res.send(err);
                                                                 log.error("TraceId : %s, Error : %s", traceId, JSON.stringify(err));
                                                             } else {
                                                                 res.json(content);
@@ -147,7 +147,7 @@ function createOrderForAirline(req, res) {
                                                                         console.log('after save...'+content)
                                                                         if (err) {
                                                                             console.log("errrrrrrrrrrr")
-                                                                            res.send(JSON.stringify(err));
+                                                                            res.send(err);
                                                                             log.error("TraceId : %s, Error : %s", traceId, JSON.stringify(err));
                                                                         } else {
                                                                             res.json(content);

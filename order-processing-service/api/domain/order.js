@@ -6,6 +6,7 @@ var _ = require('lodash'),
     OrderMetadata = require('../helpers/transformer/orderMetadata'),
     WhatsappClient = require('../helpers/client/whatsapp-client'),
     AnalyticsClient = require('../helpers/client/reporting-client'),
+    RecipeEngineClient = require('../helpers/client/recipe-engine-client'),
     Logger = require('bunyan');
 var request = require("request");
 var moment = require('moment');
@@ -59,6 +60,13 @@ order.prototype.createOrder=(traceId,userId,carrierCode, cb) => {
      rdb.table("cfp_order_processing_tb").insert(orderMetadata).run().then(function (orderData) {
          console.log(JSON.stringify(orderData.generated_keys[0]));
         var  message="Catering Order for Flight "+ orderMetadata.carrierCode+orderMetadata.flightNo+" is sent for your review and approval for order id :"+orderData.generated_keys[0] +" deleviry date :"+orderMetadata.expectedDeliveryDateAndTime;
+        var requestData={
+            "order_processing_id": orderData.generated_keys[0],
+            "template_id": orderMetadata.templateDetails[0].template_id,
+            "enginerecipeStatus":"intiated",
+            "enginerecipeDescription":"generated recipe",
+            "recipes":orderMetadata.templateDetails[0].menus[0].recipes
+          }
          WhatsappClient.sendWhatsAppMessage(message,"traceid",function(err,res){
          if(!err){
              console.log("notified"+res);
@@ -66,6 +74,14 @@ order.prototype.createOrder=(traceId,userId,carrierCode, cb) => {
             console.log("unable to notify"+err);
          }
          })
+         RecipeEngineClient.generateRecipe(requestData,"traceid",function(err,res){
+            if(!err){
+                console.log("notified"+res);
+            }else{
+               console.log("unable to notify"+err);
+            }
+            })
+
          AnalyticsClient.sendToReporting(orderMetadata,orderData.generated_keys[0],"traceid",function(err,res){
             if(!err){
                 console.log("sent to analystics"+res);
@@ -78,7 +94,13 @@ order.prototype.createOrder=(traceId,userId,carrierCode, cb) => {
                 }).catch(function (err) {
                     console.log("first err catch")
                     log.error("TraceId : %s, Error : %s", traceId, JSON.stringify(err));
-                    
+                    WhatsappClient.sendWhatsAppMessage(message,"traceid",function(err,res){
+                        if(!err){
+                            console.log("notified"+res);
+                        }else{
+                           console.log("unable to notify"+err);
+                        }
+                        })
                     cb(response);
                 });  
         }

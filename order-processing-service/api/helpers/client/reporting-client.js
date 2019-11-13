@@ -1,7 +1,7 @@
 'use strict';
 var Logger = require('bunyan');
 const request = require('request-promise');
-const reporting_service = process.env.REPORTING_SERVICE_ENDPOINT|| "https://waweb-cncwa-test.ek.aero";
+const reporting_service = process.env.REPORTING_SERVICE_ENDPOINT|| "https://b47dd6c300bb444a873e1e69bca5b8ca.eu-west-1.aws.found.io:9243";
 
 const basePath= "/cfporder/_doc/";
 
@@ -9,7 +9,7 @@ var log = new Logger.createLogger({
 name: 'reporting-clients', 
 serializers: { req: Logger.stdSerializers.req } 
 });
-//var jwt_token=process.env.WHATS_APP_TOKEN || "eyJhbGciOiAiSFMyNTYiLCAidHlwIjogIkpXVCJ9.eyJ1c2VyIjoiYWRtaW4iLCJpYXQiOjE1NzM1NTg3MDcsImV4cCI6MTU3NDE2MzUwNywid2E6cmFuZCI6LTc3OTUxODk3NzgwMzU5MTI5OH0.3VkKVXEBgUKOA_enhaCc8l4Z45qwq-l2G2uh9FuStTM";
+var REPORT_APP_TOKEN=process.env.REPORT_APP_TOKEN || "ZWxhc3RpYzppMFFRSmhSMEY2U09NazBQUmJsdkNaSHU=";
 
 var sendToReporting = function(reportingdata,order_id, traceId,cb) {
   // var phone_number=process.env.WHATS_APP_NUMBER || "971503961047";
@@ -39,11 +39,11 @@ var requestData={
    
     request(
     { 
-        method: 'POST',
+        method: 'PUT',
         uri: uri,
         headers: {
            // 'trace-id':traceId
-           // "Authorization":"Bearer "+jwt_token,
+            "Authorization":"Basic "+REPORT_APP_TOKEN,
             "Content-Type": "application/json"
         },
         json:requestData
