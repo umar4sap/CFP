@@ -49,7 +49,7 @@ order.prototype.createOrder=(traceId,userId,carrierCode, cb) => {
     // orderMetadata.listedDate=new Date();
     orderMetadata.orderedBy=userId;
     orderMetadata.carrierCode=carrierCode;
-    orderMetadata.orderStaus="inreview"
+    orderMetadata.orderStatus="inreview"
    // orderMetadata.airlineId=airlineId;
     var response = {
         message: "Cannot create the order.",
@@ -184,8 +184,8 @@ order.prototype.findAllOrdersWithStatus = (traceId,status,boardingPoint,cb) => {
    // var startfrom=startfrom?startfrom:0
 
         
-        rdb.table("cfp_order_processing_tb").filter({"boardingPoint":boardingPoint,"orderStatus":status}).run().then(function (result) {
-            rdb.table("cfp_order_processing_tb").filter({"boardingPoint":boardingPoint,"orderStatus":status}).count().run().then(function (result2) {
+        rdb.table("cfp_order_processing_tb").filter({"orderStatus":status}).run().then(function (result) {
+            rdb.table("cfp_order_processing_tb").filter({"orderStatus":status}).count().run().then(function (result2) {
             if (result.length > 0) {
                                     var resObj = { "status": "200", "data": result,"count":result2}
                                     cb(null, resObj);
