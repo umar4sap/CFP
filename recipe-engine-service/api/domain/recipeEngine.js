@@ -390,8 +390,23 @@ enginerecipe.prototype.getAllWithenginerecipeCodes=(traceId, cb) => {
 
  }   
 
+
+const isNumber = val => {
+    return !isNaN(val - parseFloat(val));
+}
+
+
+class Ingredient {
+    constructor(value) {
+        if (!value) throw new Error('Must provide a value to Ingredient');
+
+        this.value = value;
+        this.unit = this.parseUnit(value);
+        this.amount = this.parseAmount(value);
+    }
+}
 function generateRecipe(enginerecipeMetadata,recipesList,cb){
-    
+
     recipeClient.getRecipe(enginerecipeMetadata.recipe_id,"test",function(err,res){
         if(!err && res.status!="404"){
 
@@ -404,7 +419,7 @@ function generateRecipe(enginerecipeMetadata,recipesList,cb){
                 var samplePerCount=res.data.perCount; 
                 var orderPerCount=element.paxCount;
                 ingradients=res.data.ingradients;
-
+                var steps=res.data.steps;
             ingradients.forEach(function(element){
                 if(element.measurement_value){
                 var oldIngredientAmount = element.measurement_value;
@@ -412,7 +427,28 @@ function generateRecipe(enginerecipeMetadata,recipesList,cb){
                 element.measurement_value=newIngredientAmount;
                 }
             })
+            steps.forEach(function(element){
+                if(element.StepDescription){
+                    var values = element.StepDescription.split('(');
+                    var num;
+                    if(values.length>1){
+                         values = element.StepDescription.split('(')[1];
+                         values=values.split(')')[0];
+                         var actualValue=values;
+                           num= values.split(' ')[0];
+                          let unit=values.split(' ')[1];
+                          if (isNumber(num)){
+                            var oldIngredientAmount = num;
+                            var newIngredientAmount = oldIngredientAmount * orderPerCount / samplePerCount;
+                            var updateddata =newIngredientAmount+" "+unit;
+                            element.StepDescription=element.StepDescription.replace(actualValue, updateddata);
+                        } 
+                    }
+                }
+            })
+            
             enginerecipeMetadata.ingradients=ingradients;
+            enginerecipeMetadata.steps=steps;
             enginerecipeMetadata.perCount=orderPerCount;
         }
             })
